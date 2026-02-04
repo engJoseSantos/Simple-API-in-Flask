@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 
 class Crypto:
     def __init__(self, id, name, code, value_to_usd):
@@ -24,7 +24,11 @@ def index():
 def info_python():
     return "Python is a high-level, general-purpose programming language."
 
-if __name__ == "__main__":
+@app.route("/btc")
+@app.route("/bitcoin")
+def bitcoin_info():
     btc = Crypto(1, "Bitcoin", "BTC", 73550.97)
-    print(btc.to_dict())
+    return jsonify(btc.to_dict())
+
+if __name__ == "__main__":
     app.run(debug=True)
