@@ -11,13 +11,13 @@ class Crypto:
         return {
             "id" : self.id,
             "name" :self.name,
-            "code" :self.code,
-            "value" :self.value_to_usd
+            "code" :self.code.upper(),
+            "price_usd" :self.value_to_usd
         }
 
 cryptos = {
     "btc": Crypto(1, "Bitcoin", "BTC", 73550.97),
-    "eth" : Crypto(1, "Ethereum", "ETH", 2074.85)
+    "eth" : Crypto(2, "Ethereum", "ETH", 2074.85)
 }       
 app = Flask(__name__)
 
@@ -29,13 +29,7 @@ def index():
 def info_python():
     return "Python is a high-level, general-purpose programming language."
 
-@app.route("/btc")
-@app.route("/bitcoin")
-def bitcoin_info():
-    btc = cryptos["btc"]
-    return jsonify(btc.to_dict())
-
-@app.route("/crypto/<string:code>")
+@app.route("/token/<string:code>")
 def get_crypto(code):
     crypto = cryptos.get(code.lower())
 
