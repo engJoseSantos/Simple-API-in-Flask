@@ -14,6 +14,11 @@ class Crypto:
             "code" :self.code,
             "value" :self.value_to_usd
         }
+
+cryptos = {
+    "btc": Crypto(1, "Bitcoin", "BTC", 73550.97),
+    "eth" : Crypto(1, "Ethereum", "ETH", 2074.85)
+}       
 app = Flask(__name__)
 
 @app.route("/")
@@ -27,8 +32,17 @@ def info_python():
 @app.route("/btc")
 @app.route("/bitcoin")
 def bitcoin_info():
-    btc = Crypto(1, "Bitcoin", "BTC", 73550.97)
+    btc = cryptos["btc"]
     return jsonify(btc.to_dict())
+
+@app.route("/crypto/<string:code>")
+def get_crypto(code):
+    crypto = cryptos.get(code.lower())
+
+    if not crypto:
+        return jsonify({"error": "Crypto not found"}), 404
+
+    return jsonify(crypto.to_dict())
 
 if __name__ == "__main__":
     app.run(debug=True)
