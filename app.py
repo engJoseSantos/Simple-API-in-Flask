@@ -35,5 +35,11 @@ def get_crypto(code):
 
     return jsonify(crypto.to_dict())
 
+@app.route("/tokens")
+def get_tokens():
+    return jsonify({
+        "cryptos" : [c.to_dict() for c in cryptos.values()]
+    })
+
 if __name__ == "__main__":
     app.run(debug=True)
