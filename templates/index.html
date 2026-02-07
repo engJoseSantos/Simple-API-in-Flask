@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 40px;
+        }
+        h1 {
+            color: #333;
+        }
+        code {
+            background: #eee;
+            padding: 4px 6px;
+            border-radius: 4px;
+        }
+        .box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 6px;
+            max-width: 700px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>🚀 Crypto API</h1>
+        <p>Simple Flask API that returns cryptocurrency prices in USD.</p>
+
+        <h2>Available endpoints</h2>
+        <ul>
+            <li><code>/token/&lt;code&gt;</code> – Get one crypto (example: <code>/token/btc</code>)</li>
+            <li><code>/tokens</code> – List all available cryptocurrencies</li>
+        </ul>
+
+        <h2>Example response</h2>
+        <pre>
+{
+    "id": 1,
+    "name": "Bitcoin",
+    "code": "BTC",
+    "price_usd": 73550.97
+}
+        </pre>
+    </div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 class Crypto:
     def __init__(self, id, name, code, value_to_usd):
@@ -23,7 +23,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Simple API in flask"
+    #return "Simple API in flask"
+    return render_template("index.html")
 
 @app.route("/python")
 def info_python():
