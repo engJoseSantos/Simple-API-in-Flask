@@ -17,7 +17,9 @@ class Crypto:
 
 cryptos = {
     "btc": Crypto(1, "Bitcoin", "BTC", 73550.97),
-    "eth" : Crypto(2, "Ethereum", "ETH", 2074.85)
+    "eth" : Crypto(2, "Ethereum", "ETH", 2074.85),
+    "ltc" : Crypto(3, "Litecoin", "LTC", 55.44),
+    "sol" : Crypto(4, "Solana", "SOL", 88.20)
 }       
 app = Flask(__name__)
 
