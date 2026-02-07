@@ -26,10 +26,6 @@ def index():
     #return "Simple API in flask"
     return render_template("index.html")
 
-@app.route("/python")
-def info_python():
-    return "Python is a high-level, general-purpose programming language."
-
 @app.route("/token/<string:code>")
 def get_crypto(code):
     crypto = cryptos.get(code.lower())
