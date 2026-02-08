@@ -8,6 +8,7 @@
             font-family: Arial, sans-serif;
             background: #f4f6f8;
             padding: 40px;
+
         }
         h1 {
             color: #333;
@@ -17,34 +18,95 @@
             padding: 4px 6px;
             border-radius: 4px;
         }
-        .box {
+        .box{
+            display: flex;
+            justify-content: center;
+        }
+        .box div{
+            justify-content: center;
             background: #fff;
             padding: 20px;
             border-radius: 6px;
             max-width: 700px;
         }
+        footer{
+            display: flex;
+            justify-content: center;
+        }
+        a{
+            text-decoration: none;
+            color: #0F4C5C;
+        }
+        a:hover{
+            color: #D26E43;
+        }
     </style>
 </head>
 <body>
-    <div class="box">
-        <h1>🚀 Crypto API</h1>
-        <p>Simple Flask API that returns cryptocurrency prices in USD.</p>
+    <main class="box"> 
+        <div>
+            <h1>🚀 Crypto API</h1>
+            <p>Simple Flask API that returns cryptocurrency prices in USD.</p>
 
-        <h2>Available endpoints</h2>
-        <ul>
-            <li><code>/token/&lt;code&gt;</code> – Get one crypto (example: <code>/token/btc</code>)</li>
-            <li><code>/tokens</code> – List all available cryptocurrencies</li>
-        </ul>
+            <h2>Available endpoints</h2>
+            <ul>
+                <li><code>/token/&lt;code&gt;</code> Get one crypto (example: <code>/token/btc</code>)</li>
+                <li><code>/tokens</code> List all available cryptocurrencies</li>
+            </ul>
 
-        <h2>Example response</h2>
-        <pre>
-{
-    "id": 1,
-    "name": "Bitcoin",
-    "code": "BTC",
-    "price_usd": 73550.97
-}
-        </pre>
-    </div>
+            <h2>Example response</h2>
+            <h3>A single token</h3>
+            <p>Try: <a href="/token/btc">/token/btc</a></p>
+            <pre>
+    {
+        "id": 1,
+        "name": "Bitcoin",
+        "code": "BTC",
+        "price_usd": 73550.97
+    }
+            </pre>
+            <h3>All tokens</h3>
+            <p>Try: <a href="/tokens">/tokens</a></p>
+            <pre>
+    {
+        "cryptos": [
+        {
+            "code": "BTC",
+            "id": 1,
+            "name": "Bitcoin",
+            "price_usd": 73550.97
+        },
+        {
+            "code": "ETH",
+            "id": 2,
+            "name": "Ethereum",
+            "price_usd": 2074.85
+        },
+        {
+            "code": "LTC",
+            "id": 3,
+            "name": "Litecoin",
+            "price_usd": 55.44
+        },
+        {
+            "code": "SOL",
+            "id": 4,
+            "name": "Solana",
+            "price_usd": 88.2
+        },
+        {
+            "code": "DOGE",
+            "id": 5,
+            "name": "Dogecoin",
+            "price_usd": 0.098
+        }
+    ]
+    }
+            </pre>
+        </div>
+    </main>
+    <footer>
+        <p>By <a href="https://www.linkedin.com/in/jose-santos97/">José Santos</a></p>
+    </footer>
 </body>
 </html>
