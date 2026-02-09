@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 
 class Crypto:
     def __init__(self, id, name, code, value_to_usd):
@@ -29,16 +29,13 @@ def index():
     #return "Simple API in flask"
     return render_template("index.html")
 
-from flask import Flask, render_template, request, jsonify
-import re
-
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
-    # 👉 GET → mostrar o HTML
+    # GET
     if request.method == "GET":
         return render_template("contact.html")
 
-    # 👉 POST → receber a mensagem
+    # POST 
     if request.method == "POST":
         data = request.get_json()
 
@@ -49,11 +46,15 @@ def contact():
         email = data.get("email")
         message = data.get("message")
 
-        if not name or not email or not message:
-            return jsonify({"error": "All fields are required"}), 400
+        #if not name or not email or not message:
+        #    return jsonify({"error": "All fields are required"}), 400
 
-        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-            return jsonify({"error": "Invalid email"}), 400
+        #if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+        #    return jsonify({"error": "Invalid email"}), 400
+
+        print(name)
+        print(email)
+        print(message)
 
         return jsonify({
             "status": "success",
