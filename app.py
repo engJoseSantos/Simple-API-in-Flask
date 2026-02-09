@@ -29,6 +29,38 @@ def index():
     #return "Simple API in flask"
     return render_template("index.html")
 
+from flask import Flask, render_template, request, jsonify
+import re
+
+@app.route("/contact", methods=["GET", "POST"])
+def contact():
+    # 👉 GET → mostrar o HTML
+    if request.method == "GET":
+        return render_template("contact.html")
+
+    # 👉 POST → receber a mensagem
+    if request.method == "POST":
+        data = request.get_json()
+
+        if not data:
+            return jsonify({"error": "Invalid JSON"}), 400
+
+        name = data.get("name")
+        email = data.get("email")
+        message = data.get("message")
+
+        if not name or not email or not message:
+            return jsonify({"error": "All fields are required"}), 400
+
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return jsonify({"error": "Invalid email"}), 400
+
+        return jsonify({
+            "status": "success",
+            "message": "Your message was received"
+        }), 201
+
+
 @app.route("/token/<string:code>")
 def get_crypto(code):
     crypto = cryptos.get(code.lower())
