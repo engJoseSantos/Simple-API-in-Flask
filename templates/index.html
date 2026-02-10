@@ -4,41 +4,100 @@
     <meta charset="UTF-8">
     <title>Crypto API</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f8;
-            padding: 40px;
+        :root {
+            --bg: #f4f7fb;
+            --card: #ffffff;
+            --primary: #0F4C5C;
+            --secondary: #D26E43;
+            --text: #2e2e2e;
+            --muted: #6b7280;
+            --code-bg: #0f172a;
+            --code-text: #e5e7eb;
+        }
 
+        * {
+            box-sizing: border-box;
         }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 40px 20px;
+        }
+
         h1 {
-            color: #333;
+            margin-top: 0;
+            color: var(--primary);
         }
+
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 6px;
+        }
+
+        h3 {
+            margin-top: 25px;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
         code {
-            background: #eee;
+            background: #e5e7eb;
             padding: 4px 6px;
             border-radius: 4px;
+            font-size: 0.9rem;
         }
-        .box{
-            display: flex;
-            justify-content: center;
+
+        pre {
+            background: var(--code-bg);
+            color: var(--code-text);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            margin-top: 10px;
         }
-        .box div{
-            justify-content: center;
-            background: #fff;
-            padding: 20px;
-            border-radius: 6px;
-            max-width: 700px;
-        }
-        footer{
-            display: flex;
-            justify-content: center;
-        }
-        a{
+
+        a {
+            color: var(--primary);
             text-decoration: none;
-            color: #0F4C5C;
+            font-weight: 500;
         }
-        a:hover{
-            color: #D26E43;
+
+        a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        .box {
+            display: flex;
+            justify-content: center;
+        }
+
+        .box > div {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
         }
     </style>
 </head>
