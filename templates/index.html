@@ -13,6 +13,7 @@
             --muted: #6b7280;
             --code-bg: #0f172a;
             --code-text: #e5e7eb;
+            --sidebar-text: #e5e7eb;
         }
 
         * {
@@ -24,7 +25,47 @@
             font-family: "Segoe UI", Roboto, Arial, sans-serif;
             background: var(--bg);
             color: var(--text);
-            padding: 40px 20px;
+        
+        }
+
+               nav {
+            width: 240px;
+            min-height: 100vh;
+            background: var(--primary);
+            padding: 25px 20px;
+            position: fixed;
+            left: 60px;
+            top: 0;
+        }
+
+        nav h2 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: white;
         }
 
         h1 {
@@ -99,9 +140,74 @@
             color: var(--muted);
             font-size: 0.9rem;
         }
+
+
+
+/* BARRA FINA */
+.menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100vh;
+    background: #0f172a;
+    /*display: flex;*/
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1100;
+}
+
+/* BOTÃO */
+#menu-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+}
+
+
+/* MOBILE / SMALL SCREENS */
+@media (max-width: 900px) {
+    .menu-bar {
+        display: flex;
+    }
+
+    nav {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        left: 60px;
+        z-index: 1000;
+    }
+
+    nav.open {
+        transform: translateX(0);
+    }
+
+    main {
+        margin-left: 60px;
+        padding: 40px 20px;
+    }
+}
+
+
     </style>
 </head>
 <body>
+    <div class="menu-bar">
+    <button id="menu-btn">C</button>
+</div>
+
+    <nav>
+        <h2>🚀 Crypto API</h2>
+        <ul>
+            <li><a href="#intro">📌 Introduction</a></li>
+            <li><a href="#endpoints">🔗 Endpoints</a></li>
+            <li><a href="#single">💰 Single Token</a></li>
+            <li><a href="#all">📊 All Tokens</a></li>
+        </ul>
+    </nav>
     <main class="box"> 
         <div>
             <h1>🚀 Crypto API</h1>
@@ -167,5 +273,22 @@
     <footer>
         <p>By <a href="https://www.linkedin.com/in/jose-santos97/">José Santos</a></p>
     </footer>
+    <script>
+        
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.querySelector("nav");
+
+    menuBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+
+    // Fecha a sidebar se o ecrã ficar grande outra vez
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) {
+            sidebar.classList.remove("open");
+        }
+    });
+    </script>
+
 </body>
 </html>
