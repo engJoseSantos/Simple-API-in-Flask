@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crypto API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <style>
         :root {
             --bg: #f4f7fb;
@@ -34,7 +36,7 @@
             background: var(--primary);
             padding: 25px 20px;
             position: fixed;
-            left: 60px;
+            left: 45px;
             top: 0;
         }
 
@@ -123,6 +125,8 @@
         .box {
             display: flex;
             justify-content: center;
+                margin-left: 285px; /* 240 nav + 45 bar */
+    padding: 40px 20px;
         }
 
         .box > div {
@@ -132,7 +136,7 @@
             max-width: 800px;
             width: 100%;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            margin-bottom: 10px;
+            
         }
 
         footer {
@@ -140,6 +144,7 @@
             text-align: center;
             color: var(--muted);
             font-size: 0.9rem;
+            margin-left: 285px;
         }
 
 
@@ -149,11 +154,10 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 60px;
+    width: 45px;
     height: 100vh;
     background: #0f172a;
-    /*display: flex;*/
-    display: none;
+    display: flex;
     align-items: flex-start;
     justify-content: center;
     z-index: 1100;
@@ -161,24 +165,26 @@
 
 /* BOTÃO */
 #menu-btn {
+    margin-top: 10px;
     background: transparent;
     color: white;
     border: none;
-    font-size: 26px;
+    font-size: 16px;
     cursor: pointer;
+    display: none;
 }
 
 
 /* MOBILE / SMALL SCREENS */
 @media (max-width: 900px) {
-    .menu-bar {
+    #menu-btn {
         display: flex;
     }
 
     nav {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
-        left: 60px;
+        left: 45px;
         z-index: 1000;
     }
 
@@ -186,9 +192,11 @@
         transform: translateX(0);
     }
 
-    main {
+    .box {
         margin-left: 60px;
-        padding: 40px 20px;
+    }
+    footer{
+        margin-left: 60px;
     }
 }
 
@@ -197,15 +205,15 @@
 </head>
 <body>
     <div class="menu-bar">
-    <button id="menu-btn">C</button>
+    <button id="menu-btn" aria-label="Toggle navigation menu"><i class="bi bi-layout-text-sidebar-reverse"></i></button>
 </div>
 
     <nav>
         <h2>🚀 Crypto API</h2>
         <ul>
-            <li><a href="#intro">📌 Introduction</a></li>
-            <li><a href="#endpoints">🔗 Endpoints</a></li>
-            <li><a href="#single">💰 Single Token</a></li>
+            <li><a href="/">About</a></li>
+            <li><a href="#endpoints">Endpoints</a></li>
+            <li><a href="/contact">Contact</a></li>
             <li><a href="#donation">Donation</a></li>
         </ul>
     </nav>
@@ -213,8 +221,13 @@
         <div>
             <h1>🚀 Crypto API</h1>
             <p>Simple Flask API that returns cryptocurrency prices in USD.</p>
+          <p class="fix-GPT">
+This API is open source, you can find the code this 
+<a href="https://github.com/engJoseSantos/Simple-API-in-Flask" target="_blank">GitHub</a> page
+</p>
 
-            <h2>Available endpoints</h2>
+
+            <h2 id="endpoints">Available endpoints</h2>
             <ul>
                 <li><code>/token/&lt;code&gt;</code> Get one crypto (example: <code>/token/btc</code>)</li>
                 <li><code>/tokens</code> List all available cryptocurrencies</li>
@@ -269,18 +282,17 @@
     ]
     }
             </pre>
-        </div>
-    </main>
-    <section class="box" id="donation">    
-        <div>
-            <h2>Donation</h2>
+
+            <h2 id="donation">Donation</h2>
+
+                    <p>If you find this API useful, you can support the project to help keep it online and continuously improved.</p>
             <script type="text/javascript" 
                 src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" 
                 data-name="bmc-button" data-slug="jose.santos" data-color="#FF5F5F" data-emoji=""  
                 data-font="Bree" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" >
-            </script>
+            </script>  
         </div>
-    </section>
+    </main>
     <footer>
         <p>By <a href="https://www.linkedin.com/in/jose-santos97/" target="_blank">José Santos</a></p>
     </footer>

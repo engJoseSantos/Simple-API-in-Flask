@@ -2,11 +2,11 @@ from flask import Flask, jsonify, render_template, request
 from crypto import *
 
 cryptos = {
-    "btc" : Crypto(1, "Bitcoin", "BTC", 73550.97),
-    "eth" : Crypto(2, "Ethereum", "ETH", 2074.85),
-    "ltc" : Crypto(3, "Litecoin", "LTC", 55.44),
-    "sol" : Crypto(4, "Solana", "SOL", 88.20),
-    "doge": Crypto(5, "Dogecoin", "DOGE", 0.098)
+    "btc" : Crypto(1, "Bitcoin", "BTC", 69869.73),
+    "eth" : Crypto(2, "Ethereum", "ETH", 2086.21),
+    "ltc" : Crypto(3, "Litecoin", "LTC", 56.41),
+    "sol" : Crypto(4, "Solana", "SOL", 88.28),
+    "doge": Crypto(5, "Dogecoin", "DOGE", 0.11)
 }       
 app = Flask(__name__)
 

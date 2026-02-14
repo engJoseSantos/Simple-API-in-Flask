@@ -5,14 +5,97 @@
     <title>Crypto API – Contact</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
     <style>
+        :root {
+            --primary: #0F4C5C;
+            --bg: #f4f6f8;
+            --sidebar-text: #e5e7eb;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
+            margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f6f8;
+            background: var(--bg);
+        }
+
+        /* ===== MENU BAR ===== */
+        .menu-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 45px;
+            height: 100vh;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            z-index: 1100;
+        }
+
+        #menu-btn {
+            margin-top: 10px;
+            background: transparent;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            display: none;
+        }
+
+        nav {
+            width: 240px;
+            min-height: 100vh;
+            background: var(--primary);
+            padding: 25px 20px;
+            position: fixed;
+            left: 45px;
+            top: 0;
+        }
+
+        nav h2 {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav li {
+            margin-bottom: 12px;
+        }
+
+        nav a {
+            display: block;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--sidebar-text);
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            background: rgba(56, 189, 248, 0.15);
+            color: white;
+        }
+
+        /* ===== CONTENT ===== */
+        .content {
+            margin-left: 285px;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            padding: 40px 20px;
         }
 
         .card {
@@ -72,30 +155,81 @@
 
         .success { color: green; }
         .error { color: red; }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 900px) {
+            #menu-btn {
+                display: block;
+            }
+
+            nav {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            nav.open {
+                transform: translateX(0);
+            }
+
+            .content {
+                margin-left: 60px;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <h1>📩 Contact</h1>
-
-    <form id="contactForm">
-        <label>Name</label>
-        <input type="text" id="name" required>
-
-        <label>Email</label>
-        <input type="email" id="email" required>
-
-        <label>Message</label>
-        <textarea id="message" required></textarea>
-
-        <button type="submit">Send Message</button>
-    </form>
-
-    <div id="response" class="msg"></div>
+<div class="menu-bar">
+    <button id="menu-btn" aria-label="Toggle navigation">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+    </button>
 </div>
 
+<nav>
+    <h2>🚀 Crypto API</h2>
+    <ul>
+        <li><a href="/">About</a></li>
+        <li><a href="/#endpoints">Documentation</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="/#donation">Donation</a></li>
+    </ul>
+</nav>
+
+<main class="content">
+    <div class="card">
+        <h1>📩 Contact</h1>
+
+        <form id="contactForm">
+            <label>Name</label>
+            <input type="text" id="name" required>
+
+            <label>Email</label>
+            <input type="email" id="email" required>
+
+            <label>Message</label>
+            <textarea id="message" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div id="response" class="msg"></div>
+    </div>
+</main>
+
 <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.querySelector("nav");
+
+    menuBtn.addEventListener("click", () => {
+        sidebar.classList.toggle("open");
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 900) {
+            sidebar.classList.remove("open");
+        }
+    });
+
     const form = document.getElementById("contactForm");
     const responseBox = document.getElementById("response");
 
@@ -106,17 +240,15 @@
         responseBox.className = "msg";
 
         const data = {
-            name: document.getElementById("name").value,
-            email: document.getElementById("email").value,
-            message: document.getElementById("message").value
+            name: name.value,
+            email: email.value,
+            message: message.value
         };
 
         try {
             const res = await fetch("/contact", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
 
@@ -130,7 +262,7 @@
                 responseBox.textContent = result.error || "Error";
                 responseBox.classList.add("error");
             }
-        } catch (err) {
+        } catch {
             responseBox.textContent = "Server error";
             responseBox.classList.add("error");
         }
