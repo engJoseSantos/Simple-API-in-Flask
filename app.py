@@ -32,8 +32,8 @@ def contact():
         email = data.get("email")
         message = data.get("message")
 
-        #if not name or not email or not message:
-        #    return jsonify({"error": "All fields are required"}), 400
+        if not name or not email or not message:
+            return jsonify({"error": "All fields are required"}), 400
 
         #if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
         #    return jsonify({"error": "Invalid email"}), 400
