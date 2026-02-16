@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, render_template, request
 from crypto import *
+import re
 
 cryptos = {
     "btc" : Crypto(1, "Bitcoin", "BTC", 69869.73),
@@ -35,8 +36,8 @@ def contact():
         if not name or not email or not message:
             return jsonify({"error": "All fields are required"}), 400
 
-        #if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-        #    return jsonify({"error": "Invalid email"}), 400
+        if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
+            return jsonify({"error": "Invalid email"}), 400
 
         print(name)
         print(email)
