@@ -6,16 +6,14 @@ This provides crypto price data and includes a contact form with validation.
 This project demonstrates:
 
 REST API development with Flask
-
 JSON responses
-
 Basic input validation
-
 Email regex validation
-
 Template rendering
-
 Clean project structure
+
+Install dependencies:
+pip install flask
 
 👨‍💻 Author
 José Santos
