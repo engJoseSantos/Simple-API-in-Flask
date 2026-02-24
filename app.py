@@ -2,6 +2,8 @@ from flask import Flask, jsonify, render_template, request
 from crypto import *
 import re
 
+# This dictionary is just a simulation with static data
+# In the future, it will be updated automatically.
 cryptos = {
     "btc" : Crypto(1, "Bitcoin", "BTC", 69869.73),
     "eth" : Crypto(2, "Ethereum", "ETH", 2086.21),
