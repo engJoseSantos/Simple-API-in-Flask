@@ -173,10 +173,17 @@
     cursor: pointer;
     display: none;
 }
-
+ .inline{
+    display: flex;
+    align-items: center;
+ }
+ .inline h1{
+    margin: 0;
+ }
  .logo-img{
-    width: 32;
-    height: 32;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
  }
 
 /* MOBILE / SMALL SCREENS */
@@ -223,8 +230,10 @@
     </nav>
     <main class="box"> 
         <div>
-            <img class="logo-img" src="bitcoin.png">
-            <h1>Crypto API</h1>
+            <div class="inline">
+                <img class="logo-img" src="bitcoin.png">
+                <h1>Crypto API</h1>
+            </div>
             <p>Simple Flask API that returns cryptocurrency prices in USD.</p>
           <p class="fix-GPT">
 This API is open source, you can find the code this 
